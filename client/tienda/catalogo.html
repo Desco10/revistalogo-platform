@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ☰ MENU LATERAL -->
+<div class="sidebar" id="sidebar">
+
+ <span class="close-btn" id="closeBtn">✕</span>
+
+  <a href="index.html">Inicio</a>
+
+  <a href="index.html#ofertas" onclick="toggleMenu()">
+    Promociones
+  </a>
+
+  <a href="index.html#servicios" onclick="toggleMenu()">
+    Servicios
+  </a>
+
+  <a href="index.html#ubicacion" onclick="toggleMenu()">
+    Ubicación
+  </a>
+
+  <a href="https://wa.me/573001234567?text=Hola%2C%20estuve%20viendo%20su%20cat%C3%A1logo%20y%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%2C%20precio%20y%20disponibilidad%3F" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   WhatsApp
+</a>
+
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+
+  <div class="topbar-left">
+    <span class="menu-btn" id="openBtn">☰</span>
+  </div>
+
+  <div class="topbar-center">
+    <h3>Catálogo</h3>
+  </div>
+
+  <div class="topbar-right">
+    <img src="/img/LOGOMERCEDEZ.jpg" alt="Logo Empresa" class="logo-topbar">
+  </div>
+
+</div>
+
+<!-- BUSCADOR -->
+<div class="search-box">
+  <input type="text" id="buscar" placeholder="Buscar productos...">
+</div>
+
+<p id="sin-resultados" class="sin-resultados">No encontramos lo que buscas</p>
+
+<!-- CATEGORÍAS -->
+<div class="categories">
+  <button class="cat-btn" onclick="filtrar('todos')">Todos</button>
+  <button class="cat-btn" onclick="filtrar('snacks')">Snacks</button>
+  <button class="cat-btn" onclick="filtrar('bebidas')">Bebidas</button>
+  <button class="cat-btn" onclick="filtrar('enlatados')">Enlatados</button>
+  <button class="cat-btn" onclick="filtrar('Hogar')">Hogar</button>
+  <button class="cat-btn" onclick="filtrar('Electrónica')">Electrónica</button>
+  <button class="cat-btn" onclick="filtrar('Belleza')">Belleza</button>
+  <button class="cat-btn" onclick="filtrar('Ropa')">Ropa</button>
+  <button class="cat-btn" onclick="filtrar('Comidas')">Comidas</button>
+</div>
+
+<!-- PRODUCTOS -->
+<div id="productos" class="grid"></div>
+
+<div class="paginacion">
+  <button id="prevPage">Anterior</button>
+  <span id="pageInfo"></span>
+  <button id="nextPage">Siguiente</button>
+</div>
+<!-- BOTÓN WHATSAPP -->
+<!--<a class="whatsapp-float" href="https://wa.me/573001234567" target="_blank"></a>
+<a href="https://wa.me/573246030396?text=Hola%2C%20estuve%20viendo%20su%20cat%C3%A1logo%20y%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" 
+   class="whatsapp" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <img src="/img/whatsapp.webp" alt="WhatsApp">
+</a>-->
+
+<!-- SCRIPTS -->
+ <script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/buscador.js"></script>
+
+<script src="js/slider.js"></script>
+
+
+<div id="overlay"></div>
+
+
+
+<footer class="footer">
+
+
+ <div class="footer-bottom">
+    © 2026 REVISTALOGO -  DEESA-DEV Todos los derechos reservados
+  </div>
+
+</footer>
+</body>
+</html>

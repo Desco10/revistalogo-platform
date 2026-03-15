@@ -3,10 +3,13 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
+const productosRoutes = require("./routes/productos");
+
 
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use("/productos", productosRoutes);
 
 // ruta de prueba
 app.get("/", (req, res) => {

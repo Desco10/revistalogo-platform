@@ -1,0 +1,165 @@
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#f1f5f9;
+}
+
+
+
+
+
+.admin-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:white;
+  padding:15px 20px;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  border-bottom:1px solid #e2e8f0;
+}
+
+.admin-header img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+}
+.admin-container{
+  display:flex;
+  min-height:100vh;
+}
+
+/* sidebar */
+.admin-sidebar{
+  width:220px;
+  background:#0f172a;
+  color:white;
+  padding:20px;
+}
+
+.admin-sidebar h2{
+  margin-bottom:20px;
+}
+
+.admin-sidebar button{
+  width:100%;
+  margin-bottom:10px;
+  padding:10px;
+  border:none;
+  background:#1e293b;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* content */
+.admin-content{
+  flex:1;
+  padding:30px;
+}
+
+.seccion{
+  display:block;
+}
+
+.oculto{
+  display:none;
+}
+
+/* cards productos */
+.producto-admin{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.producto-admin input,
+.producto-admin select{
+  width:100%;
+  padding:8px;
+  margin-top:6px;
+  margin-bottom:10px;
+}
+
+.btn-add{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-bottom:15px;
+}
+
+.btn-guardar{
+  background:#16a34a;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+.admin-search{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  margin-bottom:20px;
+  font-size:15px;
+}
+
+
+.producto-admin{
+  background:white;
+  border-radius:12px;
+  margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+.producto-header{
+  padding:14px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  background:#f8fafc;
+}
+
+.producto-body{
+  display:none;
+  padding:15px;
+}
+
+.producto-body input{
+  width:100%;
+  margin-bottom:10px;
+  padding:8px;
+}
+
+.preview{
+  width:80px;
+  margin:8px 0;
+}
+
+
+@media(max-width:768px){
+
+  .admin-container{
+    flex-direction:column;
+  }
+
+  .admin-sidebar{
+    width:100%;
+    display:flex;
+    gap:10px;
+    overflow:auto;
+  }
+
+  .admin-content{
+    padding:15px;
+  }
+
+}

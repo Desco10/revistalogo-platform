@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computador Portátil | Catálogo</title>
+
+<meta name="description" content="Computador Portátil">
+
+<meta property="og:title" content="Computador Portátil">
+<meta property="og:description" content="Computador Portátil">
+<meta property="og:image" content="https://revistalogo.netlify.app/img/pc.png">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://revistalogo.netlify.app/p/computador-portatil">
+
+<link rel="stylesheet" href="/tienda/css/style.css">
+<link rel="stylesheet" href="/tienda/css/producto.css">
+
+</head>
+
+
+<body>
+
+<div class="producto-container">
+
+<img 
+src="/img/pc.png" 
+class="producto-img" 
+alt="Computador Portátil"
+loading="lazy"
+>
+
+<h1 class="producto-titulo">
+Computador Portátil
+</h1>
+
+<p class="producto-desc">
+Computador Portátil
+</p>
+
+<div class="producto-precio">
+$ 6800
+</div>
+
+<div class="producto-botones">
+
+<a 
+class="btn-comprar"
+href="https://wa.me/573246030396?text=Hola%20como%20esta%20%2C%20quiero%20comprar%20este%20producto%3A%20Computador%20Port%C3%A1til%20https%3A%2F%2Frevistalogo.netlify.app%2Fp%2Fcomputador-portatil"
+target="_blank"
+rel="noopener"
+>
+Comprar por WhatsApp
+</a>
+
+<button 
+class="btn-volver"
+onclick="volverCatalogo()"
+>
+← Volver al catálogo
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function volverCatalogo(){
+
+if(document.referrer && document.referrer.includes("catalogo")){
+history.back();
+return;
+}
+
+window.location.href="/tienda/catalogo.html";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cama",
+    "slug": "cama",
+    "categoria": "Hogar",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "CAMA FAMILIAR ",
+    "imagen": "/img/cama1.jpg",
+    "oferta": false,
+    "carousel": true
+  },
+  {
+    "id": 2,
+    "nombre": "Celular",
+    "slug": "celular",
+    "categoria": "Electrónica",
+    "precio": 6800,
+    "precioAntes": 7600,
+    "descuento": 10,
+    "descripcion": "Celular inteligente",
+    "imagen": "/img/celu1.png",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 3,
+    "nombre": "Celular",
+    "slug": "celular2",
+    "categoria": "Electrónica",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Celular inteligente",
+    "imagen": "/img/celu2.png",
+    "oferta": false,
+    "carousel": true
+  },
+  {
+    "id": 4,
+    "nombre": "Colchon",
+    "slug": "colchon",
+    "categoria": "Hogar",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Colchon de calidad",
+    "imagen": "/img/colchon.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 5,
+    "nombre": "Galletas Festival",
+    "slug": "galletas-festival",
+    "categoria": "snacks",
+    "precio": 5300,
+    "precioAntes": 6500,
+    "descuento": 20,
+    "descripcion": "rellenas",
+    "imagen": "/img/glacitas.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 6,
+    "nombre": "Atún Van Camps",
+    "slug": "atun-van-camps",
+    "categoria": "enlatados",
+    "precio": 6800,
+    "precioAntes": 7600,
+    "descuento": 10,
+    "descripcion": "aceite",
+    "imagen": "/img/atuncalidad.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 7,
+    "nombre": "Galletas GLACITAS",
+    "slug": "galletas-glacitas",
+    "categoria": "snacks",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Galletas",
+    "imagen": "/img/muuleche.jpg",
+    "oferta": false,
+    "carousel": true
+  },
+  {
+    "id": 8,
+    "nombre": "SARDINA CALIDAD",
+    "slug": "sardina-calidad",
+    "categoria": "enlatados",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Atún",
+    "imagen": "/img/tinaparoja.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+
+  {
+    "id": 9,
+    "nombre": "Hamburguesa",
+    "slug": "hamburguesa",
+    "categoria": "Comidas",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Hamburguesa",
+    "imagen": "/img/hambur1.jpg",
+    "oferta": false,
+    "carousel": true
+  },
+  {
+    "id": 10,
+    "nombre": "Hamburguesa",
+    "slug": "hamburguesa2",
+    "categoria": "Comidas",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Hamburguesa",
+    "imagen": "/img/hambur2.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+
+
+
+  {
+    "id": 11,
+    "nombre": "Moto",
+    "slug": "moto",
+    "categoria": "Electrónica",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Moto",
+    "imagen": "/img/moto1.png",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 12,
+    "nombre": "Computador Portátil",
+    "slug": "computador-portatil",
+    "categoria": "Electrónica",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Computador Portátil",
+    "imagen": "/img/pc.png",
+    "oferta": true,
+    "carousel": true
+  },
+
+
+
+
+
+  {
+    "id": 13,
+    "nombre": "Maquillaje",
+    "slug": "maquillaje",
+    "categoria": "Belleza",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Belleza",
+    "imagen": "/img/maqui1.jpg",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 14,
+    "nombre": "Maquillaje",
+    "slug": "maquillaje2",
+    "categoria": "Belleza",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Belleza",
+    "imagen": "/img/maqui2.png",
+    "oferta": false,
+    "carousel": true
+  },
+
+
+  {
+    "id": 15,
+    "nombre": "Maquillaje",
+    "slug": "maquillaje3",
+    "categoria": "Belleza",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Belleza",
+    "imagen": "/img/maqui3.png",
+    "oferta": true,
+    "carousel": true
+  },
+  {
+    "id": 16,
+    "nombre": "Sillon",
+    "slug": "sillon",
+    "categoria": "Hogar",
+    "precio": 6800,
+    "precioAntes": 7800,
+    "descuento": 10,
+    "descripcion": "Sillon de calidad",
+    "imagen": "/img/sillon.jpg",
+    "oferta": false,
+    "carousel": true
+  },
+
+
+  {
+    "id": 17,
+    "nombre": "Sandwich",
+    "slug": "sandwich",
+    "categoria": "Comidas",
+    "precio": 5300,
+    "precioAntes": 6600,
+    "descuento": 20,
+    "descripcion": "Sandwich",
+    "imagen": "/img/samdwi.jpg",
+    "oferta": false,
+    "carousel": true
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+
+
+

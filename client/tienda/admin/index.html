@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Administrativo</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-header">
+  <img id="logoPreview" src="" alt="Logo">
+  <div>
+    <h1 id="nombrePreview">Mi Negocio</h1>
+    <small>Panel administrativo</small>
+  </div>
+</div>
+
+<div class="admin-container">
+
+  <aside class="admin-sidebar">
+    <h2>Panel</h2>
+    <button onclick="mostrarSeccion('productos')">Productos</button>
+    <button onclick="mostrarSeccion('marca')">Marca</button>
+  </aside>
+
+
+ <!--<label>Video MP4</label>
+
+<input type="file" accept="video/mp4"
+  onchange="subirVideo(event, ${index})"> -->
+
+  <main class="admin-content">
+
+    <input 
+  type="text" 
+  id="buscarAdmin" 
+  placeholder="Buscar producto..."
+  class="admin-search">
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="seccion">
+      <h2>Gestión de Productos</h2>
+
+      <button class="btn-add" onclick="nuevoProducto()">
+        + Agregar producto
+      </button>
+
+      <div id="lista-productos"></div>
+
+      <button class="btn-guardar" onclick="guardarCambios()">
+        Guardar cambios
+      </button>
+    </section>
+
+
+    <!-- MARCA -->
+<section id="marca" class="seccion oculto">
+  <h2>Información del Negocio</h2>
+
+  <label>Nombre del negocio</label>
+  <input id="nombreNegocio" placeholder="Ej: Super Tienda Barbosa">
+
+  <!-- LOGO -->
+  <label>Logo del negocio</label>
+
+  <!-- Subir archivo -->
+  <input 
+    type="file" 
+    accept="image/png, image/jpeg, image/webp"
+    onchange="subirLogo(event)">
+
+  <!-- O pegar URL -->
+  <small style="display:block;margin:8px 0 4px;color:#64748b;">
+    o pegar URL del logo
+  </small>
+
+  <input 
+    id="logoNegocio" 
+    placeholder="https://midominio.com/logo.png"
+    oninput="previewLogoURL(this.value)">
+
+  <!-- Preview logo -->
+  <div style="margin:15px 0;">
+    <img 
+      id="logoPreview"
+      src=""
+      alt="Logo"
+      style="max-width:120px; display:none;">
+  </div>
+
+  <label>WhatsApp</label>
+  <input 
+    id="whatsappNegocio" 
+    placeholder="573001234567">
+
+  <button class="btn-guardar" onclick="guardarMarca()">
+    Guardar
+  </button>
+</section>
+
+  </main>
+</div>
+
+<script src="data-manager.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

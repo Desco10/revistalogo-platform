@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Premium</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+<!-- ☰ MENU LATERAL -->
+<!-- TOPBAR -->
+<div class="topbar">
+
+  <div class="topbar-left">
+    <span class="menu-btn" id="openBtn">☰</span>
+  </div>
+
+  <div class="topbar-center">
+    <h3>INICIO</h3>
+  </div>
+
+  <div class="topbar-right">
+    <img src="/img/LOGOMERCEDEZ.jpg" alt="Logo Empresa" class="logo-topbar">
+  </div>
+
+</div>
+
+<div class="sidebar" id="sidebar">
+
+  <span class="close-btn" id="closeBtn">✕</span>
+
+  <a href="#inicio">Inicio</a>
+  <a href="#ofertas">Promociones</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="https://wa.me/573001234567?text=Hola%2C%20tengo%20una%20duda%20sobre%20uno%20de%20los%20productos%20que%20vi%20en%20su%20cat%C3%A1logo.%20%C2%BFMe%20pueden%20ayudar%20con%20m%C3%A1s%20informaci%C3%B3n%3F" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   WhatsApp
+</a>
+</div>
+
+
+
+
+<header class="hero">
+  <div class="hero-content">
+    <h1>Ofertas Especiales</h1>
+    <p>Aprovecha nuestras promociones exclusivas</p>
+    <a href="catalogo.html" class="btn-hero">Ver Catálogo</a>
+  </div>
+</header>
+
+<h2 class="carousel-title">Nuestros Productos</h2>
+<section class="carousel">
+  <div class="carousel-track" id="carousel-track"></div>
+</section>
+
+
+
+<section id="ofertas">
+  <h2> Ofertas del día</h2>
+  <div id="ofertas-container"></div>
+</section>
+
+
+<section id="servicios">
+  <h2>Servicios</h2>
+  <p>✔ Venta al detal y mayor</p>
+  <p>✔ Domicilios rápidos</p>
+  <p>✔ Pedidos por WhatsApp</p>
+</section>
+
+<section id="ubicacion">
+  <h2>Ubicación</h2>
+
+  <iframe
+    src="https://www.google.com/maps?q=Barbosa+Santander&output=embed"
+    width="100%"
+    height="250"
+    style="border:0;"
+    allowfullscreen>
+  </iframe>
+
+  <div class="ubicacion-galeria">
+  <img src="/img/fachada1.webp" alt="Fachada">
+  <img src="/img/interior1.jpg" alt="Interior">
+  <img src="/img/productos2.webp" alt="Productos">
+</div>
+</section>
+
+
+<footer class="footer">
+
+  <div class="footer-top-line"></div>
+
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <img src="/img/LOGOMERCEDEZ.jpg" alt="Logo Empresa" class="footer-logo-img">
+      <p class="footer-description">
+        Calidad y confianza para nuestros clientes.
+      </p>
+    </div>
+
+    <div class="footer-links">
+
+     <!-- <a href="https://wa.me/573001234567" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" class="icon">
+          <path d="M20.5 3.5A11.8 11.8 0 0012.1 0C5.5 0 .1 5.4.1 12c0 2.1.6 4.2 1.7 6L0 24l6.2-1.6c1.7.9 3.6 1.3 5.5 1.3 6.6 0 12-5.4 12-12 0-3.2-1.3-6.3-3.2-8.2zM12 21.5c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.7 1 1-3.6-.2-.3A9.5 9.5 0 012.5 12C2.5 6.8 6.8 2.5 12 2.5S21.5 6.8 21.5 12 17.2 21.5 12 21.5zm5.2-7.1c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1s-.8 1-.9 1.1c-.2.2-.3.2-.6.1a7.8 7.8 0 01-2.3-1.4 8.6 8.6 0 01-1.6-2c-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.3-.6-.6-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.6.2.3 2.3 3.5 5.6 4.8.8.3 1.4.5 1.9.6.8.2 1.6.2 2.2.1.7-.1 1.8-.7 2.1-1.3.3-.6.3-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"/>
+        </svg>
+        WhatsApp
+      </a>-->
+
+      <a href="https://www.instagram.com/tuempresa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" class="icon">
+          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.5A4.5 4.5 0 1112 17a4.5 4.5 0 010-9zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/>
+        </svg>
+        Instagram
+      </a>
+
+      <a href="https://www.facebook.com/tuempresa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" class="icon">
+          <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12H17l-.5 3h-2v7A10 10 0 0022 12z"/>
+        </svg>
+        Facebook
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 REVISTALOGO -  DEESA-DEV Todos los derechos reservados
+  </div>
+
+</footer>
+
+
+<a href="https://wa.me/573246030396?text=Hola%2C%20estuve%20viendo%20su%20cat%C3%A1logo%20y%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" 
+   class="whatsapp" 
+   target="_blank" 
+   rel="noopener noreferrer">
+  <img src="/img/whatsapp.webp" alt="WhatsApp">
+</a>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/ofertas.js"></script>
+<script src="js/carousel.js"></script>
+
+<script>
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+<div id="overlay"></div>
+
+</body>
+</html>
