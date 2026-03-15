@@ -23,34 +23,53 @@ router.get("/", (req, res) => {
 
 
 
-router.post("/", (req, res) => {
+router.post("/", async (req,res)=>{
 
-    const { nombre, descripcion, precio, imagen, categoria } = req.body;
+ try{
 
-    const sql = `
-        INSERT INTO productos 
-        (nombre, descripcion, precio, imagen, categoria)
-        VALUES (?, ?, ?, ?, ?)
-    `;
+  const {
+   nombre,
+   slug,
+   categoria,
+   precio,
+   precioAntes,
+   descuento,
+   descripcion,
+   imagen,
+   oferta,
+   carousel
+  } = req.body;
 
-    db.query(
-        sql,
-        [nombre, descripcion, precio, imagen, categoria],
-        (err, result) => {
+  const sql = `
+  INSERT INTO productos
+  (nombre,slug,categoria,precio,precioAntes,descuento,descripcion,imagen,oferta,carousel)
+  VALUES (?,?,?,?,?,?,?,?,?,?)
+  `;
 
-            if (err) {
-                return res.status(500).json({
-                    error: err
-                });
-            }
+  const [result] = await db.query(sql,[
+   nombre,
+   slug,
+   categoria,
+   precio,
+   precioAntes,
+   descuento,
+   descripcion,
+   imagen,
+   oferta,
+   carousel
+  ]);
 
-            res.json({
-                message: "Producto creado",
-                id: result.insertId
-            });
+  res.json({
+   mensaje:"Producto guardado",
+   id: result.insertId
+  });
 
-        }
-    );
+ }catch(error){
+
+  console.error(error);
+  res.status(500).json({error:"Error guardando producto"});
+
+ }
 
 });
 
