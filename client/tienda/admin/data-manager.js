@@ -1,20 +1,55 @@
 let productos = [];
 
+/* cargar productos desde API */
 async function cargarProductos(){
-  const res = await fetch("../data/productos.json");
-  productos = await res.json();
-  renderizarAdmin();
+
+  try{
+
+    const res = await fetch("http://localhost:3000/productos");
+
+    productos = await res.json();
+
+    renderizarAdmin();
+
+  }catch(err){
+
+    console.error("Error cargando productos", err);
+
+  }
+
 }
 
-function guardarCambios(){
-  const dataStr = JSON.stringify(productos, null, 2);
-  const blob = new Blob([dataStr], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "productos.json";
-  a.click();
+/* guardar todos los productos en la API */
 
-  alert("Archivo descargado. Súbelo al servidor.");
+async function guardarCambios(){
+
+  try{
+
+    for(const producto of productos){
+
+      await fetch("http://localhost:3000/productos",{
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(producto)
+
+      });
+
+    }
+
+    alert("Productos guardados en la base de datos");
+
+  }catch(err){
+
+    console.error(err);
+
+    alert("Error guardando productos");
+
+  }
+
 }

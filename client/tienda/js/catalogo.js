@@ -11,20 +11,30 @@ let primerClickRealizado = false;
 
 
 // ===============================
-// CARGAR PRODUCTOS
+// CARGAR PRODUCTOS DESDE API
 // ===============================
-fetch("data/productos.json")
-  .then(res => res.json())
-  .then(data => {
+async function cargarProductos(){
+
+  try{
+
+    const res = await fetch("http://localhost:3000/productos");
+
+    const data = await res.json();
 
     productosGlobal = data;
     productosFiltrados = data;
 
     renderizarPagina();
 
-  })
-  .catch(err => console.error("Error cargando productos:", err));
+  }catch(err){
 
+    console.error("Error cargando productos:", err);
+
+  }
+
+}
+
+cargarProductos();
 
 
 // ===============================
@@ -92,9 +102,6 @@ function renderizarPagina(){
 }
 
 
-
-// ===============================
-// ENVIAR PRODUCTO A WHATSAPP
 // ===============================
 // ENVIAR PRODUCTO A WHATSAPP
 // ===============================
@@ -105,11 +112,11 @@ function agregarAlPedidoProducto(id) {
 
   const productoURL =
 window.location.origin + "/p/" + prod.slug;
+
   let mensaje = "";
 
   if (!primerClickRealizado) {
 
-    // ✅ URL primero = WhatsApp genera preview visual y "oculta" el link
     mensaje =
 `${productoURL}
 
@@ -131,6 +138,7 @@ window.location.origin + "/p/" + prod.slug;
   }
 
   const wa = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+
   window.open(wa, "_blank");
 
 }
@@ -203,7 +211,6 @@ if(prevBtn){
 }
 
 
-
 // ===============================
 // FILTRAR CATEGORÍAS
 // ===============================
@@ -226,7 +233,6 @@ function filtrar(categoria){
   renderizarPagina();
 
 }
-
 
 
 // ===============================
