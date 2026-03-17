@@ -67,9 +67,12 @@ function renderizarPagina(){
       <div class="producto">
 
         <img src="${prod.imagen}"
-             alt="${prod.nombre}"
-             class="producto-img"
-             onclick="agregarAlPedidoProducto(${prod.id})">
+     alt="${prod.nombre}"
+     class="producto-img"
+     loading="lazy"
+     decoding="async"
+     style="background:#eee;"
+     onclick="agregarAlPedidoProducto(${prod.id})">
 
         <div class="producto-info">
 

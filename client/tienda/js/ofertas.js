@@ -97,10 +97,12 @@ function mostrarOfertas(lista){
       <div class="oferta-card">
 
         <img src="${prod.imagen}"
-             alt="${prod.nombre}"
-             class="oferta-img"
-             onclick="comprarOfertaProducto(${prod.id})">
-
+     alt="${prod.nombre}"
+     class="oferta-img"
+     loading="lazy"
+     decoding="async"
+     style="background:#eee;"
+     onclick="comprarOfertaProducto(${prod.id})">
         <div class="oferta-info">
 
           ${porcentaje ? `<div class="producto-descuento">${porcentaje}% OFF</div>` : ""}

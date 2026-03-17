@@ -248,23 +248,36 @@ async function guardarProductoAPI(producto, boton){
 
     const data = await response.json();
 
+    // 🔴 manejar errores del backend
+    if(!response.ok){
+      alert(data.error || "Error guardando producto");
+      return;
+    }
+
+    // 🟢 guardar ID si es nuevo
+    if(data.id){
+      producto.id = data.id;
+    }
+
     console.log("Producto guardado:",data);
 
     alert("Producto guardado correctamente");
 
     // recargar productos desde la base
-    cargarProductos();
+    if(typeof cargarProductos === "function"){
+      cargarProductos();
+    }
 
   }catch(error){
 
     console.error("Error guardando producto:",error);
+    alert("Error de conexión con el servidor");
 
   }
 
   boton.disabled = false;
   boton.innerText = "Guardar en servidor";
 }
-
 
 function nuevoProducto(){
 

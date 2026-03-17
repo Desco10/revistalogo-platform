@@ -14,10 +14,13 @@ fetch("data/productos.json")
 
       track.innerHTML += `
         <img 
-          src="${prod.imagen}" 
-          alt="${prod.nombre}"
-          onclick="window.open('${wa}','_blank')"
-        >
+  src="${prod.imagen}" 
+  alt="${prod.nombre}"
+  loading="lazy"
+  decoding="async"
+  style="background:#eee;"
+  onclick="window.open('${wa}','_blank')"
+>
       `;
     });
 
