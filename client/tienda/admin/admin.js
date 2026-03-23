@@ -70,8 +70,8 @@ function renderizarAdmin(filtro=""){
 
         <label>Oferta</label>
         <input type="checkbox"
-        ${p.ofertas ? "checked":""}
-        onchange="productos[${index}].ofertas=this.checked">
+        ${p.oferta ? "checked":""}
+         onchange="productos[${index}].oferta=this.checked"
 
         <label>Carrusel</label>
         <input type="checkbox"
@@ -238,12 +238,20 @@ async function guardarProductoAPI(producto, boton){
       method = "PUT";
     }
 
+    // 🔥 NORMALIZAR ANTES DE ENVIAR
+    const productoEnviar = {
+      ...producto,
+      oferta: producto.oferta ? 1 : 0,
+      carousel: producto.carousel ? 1 : 0,
+      imagen: producto.imagen || null
+    };
+
     const response = await fetch(url,{
-      method:method,
+      method: method,
       headers:{
         "Content-Type":"application/json"
       },
-      body:JSON.stringify(producto)
+      body: JSON.stringify(productoEnviar)
     });
 
     const data = await response.json();
@@ -259,7 +267,7 @@ async function guardarProductoAPI(producto, boton){
       producto.id = data.id;
     }
 
-    console.log("Producto guardado:",data);
+    console.log("Producto guardado:", data);
 
     alert("Producto guardado correctamente");
 
@@ -270,7 +278,7 @@ async function guardarProductoAPI(producto, boton){
 
   }catch(error){
 
-    console.error("Error guardando producto:",error);
+    console.error("Error guardando producto:", error);
     alert("Error de conexión con el servidor");
 
   }

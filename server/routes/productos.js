@@ -153,12 +153,21 @@ res.send(`
 <title>${producto.nombre}</title>
 
 <meta property="og:title" content="${producto.nombre}">
-<meta property="og:description" content="${producto.descripcion}">
-<meta property="og:image" content="${producto.imagen}">
+<meta property="og:description" content="${producto.descripcion || ""}">
+
+<meta property="og:image" content="${
+  producto.imagen
+    ? (producto.imagen.startsWith("http")
+        ? producto.imagen
+        : "https://revistalogo-backend.onrender.com" + producto.imagen)
+    : "https://plataformarevis.netlify.app/img/default.jpg"
+}">
+
 <meta property="og:type" content="product">
+<meta property="og:url" content="https://plataformarevis.netlify.app/p/${producto.slug}">
 
 <meta http-equiv="refresh"
-content="0; url=/tienda/producto.html?slug=${producto.slug}" />
+content="0; url=https://plataformarevis.netlify.app/tienda/producto.html?slug=${producto.slug}" />
 
 </head>
 
