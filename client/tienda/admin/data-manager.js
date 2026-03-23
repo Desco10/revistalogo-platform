@@ -28,7 +28,7 @@ async function guardarCambios(){
 
     for(const producto of productos){
 
-      await fetch("http://localhost:3000/productos",{
+      await fetch("https://revistalogo-backend.onrender.com/productos",{
 
         method:"POST",
 

@@ -1,4 +1,4 @@
-fetch("data/productos.json")
+fetch("https://revistalogo-backend.onrender.com/productos")
   .then(res => res.json())
   .then(data => {
 

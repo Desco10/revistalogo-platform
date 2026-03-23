@@ -1,19 +1,18 @@
 const fs = require("fs");
 const path = require("path");
+const fetch = require("node-fetch");
 
-const dominio = "https://revistalogo.netlify.app";
+// 🔥 DOMINIO ACTUAL
+const dominio = "https://plataformarevis.netlify.app";
+
+// 🔥 API BACKEND
+const API_URL = "https://revistalogo-backend.onrender.com/productos";
 
 // rutas
-const productosPath = path.join(__dirname, "../tienda/data/productos.json");
 const templatePath = path.join(__dirname, "../tienda/templates/producto.html");
 const outputDir = path.join(__dirname, "../tienda/producto");
 
-// verificar archivos
-if (!fs.existsSync(productosPath)) {
-  console.error("❌ No se encontró productos.json");
-  process.exit(1);
-}
-
+// verificar template
 if (!fs.existsSync(templatePath)) {
   console.error("❌ No se encontró el template producto.html");
   process.exit(1);
@@ -24,10 +23,6 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// cargar datos
-const productos = JSON.parse(fs.readFileSync(productosPath, "utf8"));
-const template = fs.readFileSync(templatePath, "utf8");
-
 // limpiar html antiguos
 fs.readdirSync(outputDir).forEach(file => {
   if (file.endsWith(".html")) {
@@ -37,38 +32,66 @@ fs.readdirSync(outputDir).forEach(file => {
 
 console.log("🧹 Carpeta de productos limpiada");
 
-// generar páginas
-productos.forEach(prod => {
-
-  if (!prod.slug || !prod.nombre) {
-    console.warn("⚠ Producto inválido:", prod);
-    return;
+// 🔥 obtener productos desde backend REAL
+async function getProductos() {
+  try {
+    const res = await fetch(API_URL);
+    return await res.json();
+  } catch (error) {
+    console.error("❌ Error obteniendo productos:", error);
+    return [];
   }
+}
 
-  const urlProducto = `${dominio}/p/${prod.slug}`;
-  const imagenOG = `${dominio}${prod.imagen}`;
+// 🔥 generar páginas
+(async () => {
 
-  const mensaje = encodeURIComponent(
-    `Hola como esta , quiero comprar este producto: ${prod.nombre} ${urlProducto}`
-  );
+  const productos = await getProductos();
+  const template = fs.readFileSync(templatePath, "utf8");
 
-  const whatsapp = `https://wa.me/573246030396?text=${mensaje}`;
+  productos.forEach(prod => {
 
-  let html = template
-    .replace(/{{NOMBRE}}/g, prod.nombre)
-    .replace(/{{PRECIO}}/g, prod.precio)
-    .replace(/{{DESCRIPCION}}/g, prod.descripcion || "")
-    .replace(/{{IMAGEN}}/g, prod.imagen)
-    .replace(/{{IMAGENOG}}/g, imagenOG)
-    .replace(/{{URL}}/g, urlProducto)
-    .replace(/{{SLUG}}/g, prod.slug)
-    .replace(/{{WHATSAPP}}/g, whatsapp);
+    if (!prod.slug || !prod.nombre) {
+      console.warn("⚠ Producto inválido:", prod);
+      return;
+    }
 
-  const outputFile = path.join(outputDir, `${prod.slug}.html`);
+    // 🔥 URL LIMPIA (SIN .html)
+    const urlProducto = `${dominio}/p/${prod.slug}`;
 
-  fs.writeFileSync(outputFile, html);
+    // 🔥 IMAGEN OG CORRECTA
+    const imagenOG = prod.imagen
+      ? prod.imagen.startsWith("http")
+        ? prod.imagen
+        : `https://revistalogo-backend.onrender.com${prod.imagen}`
+      : `${dominio}/img/default.jpg`;
 
-  console.log("✔ Producto generado:", prod.slug);
-});
+    // 🔥 WHATSAPP
+    const mensaje = encodeURIComponent(
+      `Hola, quiero comprar este producto: ${prod.nombre} ${urlProducto}`
+    );
 
-console.log("🚀 Todos los productos fueron generados correctamente.");
+    const whatsapp = `https://wa.me/573246030396?text=${mensaje}`;
+
+    // 🔥 reemplazos en template
+    let html = template
+      .replace(/{{NOMBRE}}/g, prod.nombre)
+      .replace(/{{PRECIO}}/g, prod.precio)
+      .replace(/{{DESCRIPCION}}/g, prod.descripcion || "")
+      .replace(/{{IMAGEN}}/g, imagenOG)
+      .replace(/{{IMAGENOG}}/g, imagenOG)
+      .replace(/{{URL}}/g, urlProducto)
+      .replace(/{{SLUG}}/g, prod.slug)
+      .replace(/{{WHATSAPP}}/g, whatsapp);
+
+    const outputFile = path.join(outputDir, `${prod.slug}.html`);
+
+    fs.writeFileSync(outputFile, html);
+
+    console.log("✔ Producto generado:", prod.slug);
+
+  });
+
+  console.log("🚀 Todos los productos fueron generados correctamente.");
+
+})();
