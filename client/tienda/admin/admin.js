@@ -70,8 +70,8 @@ function renderizarAdmin(filtro=""){
 
         <label>Oferta</label>
         <input type="checkbox"
-        ${p.oferta ? "checked":""}
-        onchange="productos[${index}].oferta=this.checked">
+        ${p.ofertas ? "checked":""}
+        onchange="productos[${index}].ofertas=this.checked">
 
         <label>Carrusel</label>
         <input type="checkbox"
