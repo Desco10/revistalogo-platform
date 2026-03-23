@@ -71,7 +71,7 @@ function renderizarAdmin(filtro=""){
         <label>Ofertas</label>
         <input type="checkbox"
         ${p.oferta ? "checked":""}
-         onchange="productos[${index}].oferta=this.checked">
+        onchange="productos[${index}].oferta=this.checked">
 
         <label>Carrusel</label>
         <input type="checkbox"
@@ -238,13 +238,25 @@ async function guardarProductoAPI(producto, boton){
       method = "PUT";
     }
 
-    // 🔥 NORMALIZAR ANTES DE ENVIAR
+    // 🔥 OBJETO LIMPIO (SIN ERRORES OCULTOS)
     const productoEnviar = {
-      ...producto,
+      nombre: producto.nombre || "",
+      slug: producto.slug || "",
+      categoria: producto.categoria || null,
+      precio: Number(producto.precio) || 0,
+      precioAntes: Number(producto.precioAntes) || 0,
+      descuento: Number(producto.descuento) || 0,
+      descripcion: producto.descripcion || null,
+
+      // 🔥 CLAVE PARA QUE NO SE PIERDA
+      imagen: producto.imagen ? producto.imagen : null,
+
+      // 🔥 CHECKBOX CORRECTOS
       oferta: producto.oferta ? 1 : 0,
-      carousel: producto.carousel ? 1 : 0,
-      imagen: producto.imagen || null
+      carousel: producto.carousel ? 1 : 0
     };
+
+    console.log("📦 ENVIANDO:", productoEnviar);
 
     const response = await fetch(url,{
       method: method,
@@ -256,7 +268,6 @@ async function guardarProductoAPI(producto, boton){
 
     const data = await response.json();
 
-    // 🔴 manejar errores del backend
     if(!response.ok){
       alert(data.error || "Error guardando producto");
       return;
@@ -267,18 +278,18 @@ async function guardarProductoAPI(producto, boton){
       producto.id = data.id;
     }
 
-    console.log("Producto guardado:", data);
+    console.log("✅ Producto guardado:", data);
 
     alert("Producto guardado correctamente");
 
-    // recargar productos desde la base
+    // 🔥 refrescar desde backend REAL
     if(typeof cargarProductos === "function"){
-      cargarProductos();
+      await cargarProductos();
     }
 
   }catch(error){
 
-    console.error("Error guardando producto:", error);
+    console.error("❌ Error guardando producto:", error);
     alert("Error de conexión con el servidor");
 
   }
@@ -286,35 +297,36 @@ async function guardarProductoAPI(producto, boton){
   boton.disabled = false;
   boton.innerText = "Guardar en servidor";
 }
-
 function nuevoProducto(){
 
   const nuevo = {
 
-    nombre:"",
-    slug:"",
-    categoria:"",
-    precio:0,
-    precioAntes:0,
-    descuento:0,
-    descripcion:"",
-    imagen:"",
-    oferta:false,
-    carousel:false
+    id: null,
+    nombre: "",
+    slug: "",
+    categoria: "",
+    precio: 0,
+    precioAntes: 0,
+    descuento: 0,
+    descripcion: "",
+
+    // 🔥 IMPORTANTE
+    imagen: null,
+
+    oferta: false,
+    carousel: false
 
   };
 
   productos.push(nuevo);
 
   renderizarAdmin();
-
 }
 
-
-
 function generarSlug(texto){
-return texto
-.toLowerCase()
-.replace(/\s+/g,"-")
-.replace(/[^\w-]+/g,"");
+  return texto
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g,"-")
+    .replace(/[^\w-]+/g,"");
 }
