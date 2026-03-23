@@ -280,7 +280,7 @@ router.post("/upload", upload.single("imagen"), (req,res)=>{
 try{
 
 const imageUrl =
-`http://localhost:3000/uploads/${req.file.filename}`;
+`https://revistalogo-backend.onrender.com/uploads/${req.file.filename}`;
 
 res.json({
 success:true,

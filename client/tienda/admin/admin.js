@@ -106,9 +106,9 @@ async function eliminarProducto(index){
     if(producto.id){
 
       await fetch(
-        `http://localhost:3000/productos/${producto.id}`,
-        { method:"DELETE" }
-      );
+`https://revistalogo-backend.onrender.com/productos/${producto.id}`,
+{ method:"DELETE" }
+);
 
     }
 
@@ -160,7 +160,7 @@ formData.append("imagen", file);
 try{
 
 const res = await fetch(
-"http://localhost:3000/productos/upload",
+"https://revistalogo-backend.onrender.com/productos/upload",
 {
 method:"POST",
 body:formData
@@ -229,12 +229,12 @@ async function guardarProductoAPI(producto, boton){
 
   try{
 
-    let url = "http://localhost:3000/productos";
+    let url = "https://revistalogo-backend.onrender.com/productos";
     let method = "POST";
 
     // si el producto ya existe → editar
     if(producto.id){
-      url = `http://localhost:3000/productos/${producto.id}`;
+      url = `https://revistalogo-backend.onrender.com/productos/${producto.id}`;
       method = "PUT";
     }
 

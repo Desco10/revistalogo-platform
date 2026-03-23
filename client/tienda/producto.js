@@ -7,7 +7,7 @@ async function cargarProducto(){
 try{
 
 const res = await fetch(
-`http://localhost:3000/productos/slug/${slug}`
+`https://revistalogo-backend.onrender.com/productos/slug/${slug}`
 );
 
 const producto = await res.json();
