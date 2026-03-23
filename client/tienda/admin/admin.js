@@ -68,10 +68,10 @@ function renderizarAdmin(filtro=""){
 
         <img src="${p.imagen || ""}" class="preview">
 
-        <label>Oferta</label>
+        <label>Ofertas</label>
         <input type="checkbox"
         ${p.oferta ? "checked":""}
-         onchange="productos[${index}].oferta=this.checked"
+         onchange="productos[${index}].oferta=this.checked">
 
         <label>Carrusel</label>
         <input type="checkbox"

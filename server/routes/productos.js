@@ -288,6 +288,12 @@ router.post("/upload", upload.single("imagen"), (req,res)=>{
 
 try{
 
+if(!req.file){
+  return res.status(400).json({
+    error:"No se recibió imagen"
+  });
+}
+
 const imageUrl =
 `https://revistalogo-backend.onrender.com/uploads/${req.file.filename}`;
 
@@ -307,7 +313,6 @@ error:"Error subiendo imagen"
 }
 
 });
-
 
 
 
