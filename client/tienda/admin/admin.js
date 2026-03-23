@@ -1,3 +1,6 @@
+// ===============================
+// INICIO
+// ===============================
 cargarProductos();
 
 function mostrarSeccion(id){
@@ -8,13 +11,18 @@ function mostrarSeccion(id){
 }
 
 
+// ===============================
+// RENDER ADMIN
+// ===============================
 function renderizarAdmin(filtro=""){
 
   const cont = document.getElementById("lista-productos");
+  if(!cont) return;
+
   cont.innerHTML="";
 
   productos
-  .filter(p => p.nombre.toLowerCase().includes(filtro))
+  .filter(p => (p.nombre || "").toLowerCase().includes(filtro))
   .forEach((p,index)=>{
 
     cont.innerHTML += `
@@ -37,7 +45,8 @@ function renderizarAdmin(filtro=""){
         productos[${index}].nombre=this.value;
         productos[${index}].slug=generarSlug(this.value);
         renderizarAdmin();
-    ">
+        ">
+
         <label>Slug</label>
         <input value="${p.slug || ""}" disabled style="background:#eee">
 
@@ -85,6 +94,7 @@ function renderizarAdmin(filtro=""){
         <button onclick="guardarProductoAPI(productos[${index}], this)">
         Guardar en servidor
         </button>
+
       </div>
 
     </div>
@@ -94,7 +104,9 @@ function renderizarAdmin(filtro=""){
 }
 
 
-
+// ===============================
+// ELIMINAR
+// ===============================
 async function eliminarProducto(index){
 
   const producto = productos[index];
@@ -104,28 +116,25 @@ async function eliminarProducto(index){
   try{
 
     if(producto.id){
-
       await fetch(
-`https://revistalogo-backend.onrender.com/productos/${producto.id}`,
-{ method:"DELETE" }
-);
-
+        `https://revistalogo-backend.onrender.com/productos/${producto.id}`,
+        { method:"DELETE" }
+      );
     }
 
     productos.splice(index,1);
-
     renderizarAdmin();
 
   }catch(error){
-
     console.error("Error eliminando producto",error);
-
   }
 
 }
 
 
-
+// ===============================
+// TOGGLE
+// ===============================
 function toggleAdmin(i){
 
   const body = document.getElementById("body-"+i);
@@ -136,61 +145,27 @@ function toggleAdmin(i){
 }
 
 
-
+// ===============================
+// BUSCADOR
+// ===============================
 document
 .getElementById("buscarAdmin")
 .addEventListener("input", e=>{
-
   renderizarAdmin(e.target.value.toLowerCase());
-
 });
 
 
-
-async function subirImagen(e,index){
-
-const file = e.target.files[0];
-
-if(!file) return;
-
-const formData = new FormData();
-
-formData.append("imagen", file);
-
-try{
-
-const res = await fetch(
-"https://revistalogo-backend.onrender.com/productos/upload",
-{
-method:"POST",
-body:formData
-}
-);
-
-const data = await res.json();
-
-productos[index].imagen = data.url;
-
-renderizarAdmin();
-
-}catch(err){
-
-console.error("Error subiendo imagen",err);
-
-}
-
-}
-
-
+// ===============================
+// SUBIR IMAGEN (FIX TOTAL)
+// ===============================
 async function subirImagen(e, index){
 
   const file = e.target.files[0];
   if(!file) return;
 
-  // 🔥 PREVIEW INMEDIATO (ANTES DE SUBIR)
+  // 🔥 preview inmediato
   const previewLocal = URL.createObjectURL(file);
   productos[index].imagen = previewLocal;
-
   renderizarAdmin();
 
   const formData = new FormData();
@@ -210,21 +185,28 @@ async function subirImagen(e, index){
 
     console.log("📸 subida:", data);
 
-    // 🔥 AHORA sí guardas la URL REAL
+    // 🔥 guardar URL real
     productos[index].imagen = data.url;
 
     renderizarAdmin();
 
   }catch(err){
-
     console.error("Error subiendo imagen", err);
-
   }
 
 }
 
 
+// ===============================
+// GUARDAR PRODUCTO (FIX TOTAL)
+// ===============================
 async function guardarProductoAPI(producto, boton){
+
+  // 🚨 evitar guardar antes de subir imagen
+  if(producto.imagen && producto.imagen.startsWith("blob:")){
+    alert("Espera a que la imagen termine de subir");
+    return;
+  }
 
   boton.disabled = true;
   boton.innerText = "Guardando...";
@@ -234,13 +216,11 @@ async function guardarProductoAPI(producto, boton){
     let url = "https://revistalogo-backend.onrender.com/productos";
     let method = "POST";
 
-    // si el producto ya existe → editar
     if(producto.id){
       url = `https://revistalogo-backend.onrender.com/productos/${producto.id}`;
       method = "PUT";
     }
 
-    // 🔥 OBJETO LIMPIO (SIN ERRORES OCULTOS)
     const productoEnviar = {
       nombre: producto.nombre || "",
       slug: producto.slug || "",
@@ -249,11 +229,7 @@ async function guardarProductoAPI(producto, boton){
       precioAntes: Number(producto.precioAntes) || 0,
       descuento: Number(producto.descuento) || 0,
       descripcion: producto.descripcion || null,
-
-      // 🔥 CLAVE PARA QUE NO SE PIERDA
-      imagen: producto.imagen ? producto.imagen : null,
-
-      // 🔥 CHECKBOX CORRECTOS
+      imagen: producto.imagen || null,
       oferta: producto.oferta ? 1 : 0,
       carousel: producto.carousel ? 1 : 0
     };
@@ -275,47 +251,32 @@ async function guardarProductoAPI(producto, boton){
       return;
     }
 
-    // 🟢 guardar ID si es nuevo
     if(data.id){
       producto.id = data.id;
     }
 
-    console.log("✅ Producto guardado:", data);
-
     alert("Producto guardado correctamente");
 
-    // 🔥 refrescar desde backend REAL
     if(typeof cargarProductos === "function"){
       await cargarProductos();
     }
 
   }catch(error){
-
     console.error("❌ Error guardando producto:", error);
     alert("Error de conexión con el servidor");
-
   }
 
   boton.disabled = false;
   boton.innerText = "Guardar en servidor";
-
-
-  if(producto.imagen && producto.imagen.startsWith("blob:")){
-  alert("Espera a que la imagen termine de subir");
-  boton.disabled = false;
-  boton.innerText = "Guardar en servidor";
-  return;
-}
-
-console.log("ANTES DE ENVIAR:", producto);
 }
 
 
-
+// ===============================
+// NUEVO PRODUCTO
+// ===============================
 function nuevoProducto(){
 
   const nuevo = {
-
     id: null,
     nombre: "",
     slug: "",
@@ -324,20 +285,19 @@ function nuevoProducto(){
     precioAntes: 0,
     descuento: 0,
     descripcion: "",
-
-    // 🔥 IMPORTANTE
     imagen: null,
-
     oferta: false,
     carousel: false
-
   };
 
   productos.push(nuevo);
-
   renderizarAdmin();
 }
 
+
+// ===============================
+// GENERAR SLUG
+// ===============================
 function generarSlug(texto){
   return texto
     .toLowerCase()
