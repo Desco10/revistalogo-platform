@@ -182,44 +182,46 @@ console.error("Error subiendo imagen",err);
 }
 
 
-function subirLogo(e){
+async function subirImagen(e, index){
 
   const file = e.target.files[0];
-
   if(!file) return;
 
-  const reader = new FileReader();
+  // 🔥 PREVIEW INMEDIATO (ANTES DE SUBIR)
+  const previewLocal = URL.createObjectURL(file);
+  productos[index].imagen = previewLocal;
 
-  reader.onload = function(evt){
+  renderizarAdmin();
 
-    const base64 = evt.target.result;
+  const formData = new FormData();
+  formData.append("imagen", file);
 
-    document.getElementById("logoPreview").src = base64;
+  try{
 
-    document.getElementById("logoPreview").style.display="block";
+    const res = await fetch(
+      "https://revistalogo-backend.onrender.com/productos/upload",
+      {
+        method:"POST",
+        body:formData
+      }
+    );
 
-    document.getElementById("logoNegocio").value = base64;
+    const data = await res.json();
 
-  };
+    console.log("📸 subida:", data);
 
-  reader.readAsDataURL(file);
+    // 🔥 AHORA sí guardas la URL REAL
+    productos[index].imagen = data.url;
+
+    renderizarAdmin();
+
+  }catch(err){
+
+    console.error("Error subiendo imagen", err);
+
+  }
 
 }
-
-
-
-function previewLogoURL(url){
-
-  if(!url) return;
-
-  const img = document.getElementById("logoPreview");
-
-  img.src = url;
-
-  img.style.display="block";
-
-}
-
 
 
 async function guardarProductoAPI(producto, boton){
@@ -296,7 +298,20 @@ async function guardarProductoAPI(producto, boton){
 
   boton.disabled = false;
   boton.innerText = "Guardar en servidor";
+
+
+  if(producto.imagen && producto.imagen.startsWith("blob:")){
+  alert("Espera a que la imagen termine de subir");
+  boton.disabled = false;
+  boton.innerText = "Guardar en servidor";
+  return;
 }
+
+console.log("ANTES DE ENVIAR:", producto);
+}
+
+
+
 function nuevoProducto(){
 
   const nuevo = {

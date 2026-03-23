@@ -65,7 +65,7 @@ function renderizarPagina(){
 
       <div class="producto">
 
-        <img src="${prod.imagen}"
+        <img src="${p.imagen || '/img/default.jpg'}">
      alt="${prod.nombre}"
      class="producto-img"
      loading="lazy"

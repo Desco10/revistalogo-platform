@@ -12,7 +12,10 @@ fetch("https://revistalogo-backend.onrender.com/productos")
   .then(res => res.json())
   .then(data => {
 
-    ofertasGlobal = data.filter(p => p.oferta === true);
+    // 🔥 FIX CLAVE (1 en vez de true)
+    ofertasGlobal = data.filter(p => Number(p.oferta) === 1);
+
+    console.log("OFERTAS CARGADAS:", ofertasGlobal);
 
     mostrarOfertas(ofertasGlobal);
 
@@ -22,7 +25,7 @@ fetch("https://revistalogo-backend.onrender.com/productos")
 
 
 // ===============================
-/// WHATSAPP OFERTA
+// WHATSAPP OFERTA
 // ===============================
 function comprarOfertaProducto(id){
 
@@ -30,7 +33,7 @@ function comprarOfertaProducto(id){
   if(!prod) return;
 
   const productoURL =
-window.location.origin + "/p/" + prod.slug;
+    window.location.origin + "/p/" + prod.slug;
 
   let mensaje = "";
 
@@ -92,17 +95,25 @@ function mostrarOfertas(lista){
       ? Math.round((ahorro / precioAntes) * 100)
       : prod.descuento || 0;
 
+    // 🔥 FIX IMAGEN
+    const imagen = prod.imagen
+      ? (prod.imagen.startsWith("http")
+          ? prod.imagen
+          : "https://revistalogo-backend.onrender.com" + prod.imagen)
+      : "/img/default.jpg";
+
     container.innerHTML += `
 
       <div class="oferta-card">
 
-        <img src="${prod.imagen}"
+        <img src="${imagen}"
      alt="${prod.nombre}"
      class="oferta-img"
      loading="lazy"
      decoding="async"
      style="background:#eee;"
      onclick="comprarOfertaProducto(${prod.id})">
+
         <div class="oferta-info">
 
           ${porcentaje ? `<div class="producto-descuento">${porcentaje}% OFF</div>` : ""}
